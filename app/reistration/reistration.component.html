@@ -1,0 +1,77 @@
+<div class="form-style-10">
+  <h1>SignUp Now!<span>and experience the happiness of learning.</span></h1>
+  <form #registration = 'ngForm' (ngSubmit) = 'onsubmit(registration.value)'>
+      <div class="section"><span>1</span>First Name &amp; Address</div>
+      <div class="inner-wrap">
+          <label>Your Full Name <input #fullNameRef = "ngModel" pattern = "[a-zA-Z]+" type="text" name="field1" required minlength ="4" placeholder ="First Name && Last Name " ngModel /></label>
+            <div *ngIf = 'fullNameRef.errors && (fullNameRef.valid || fullNameRef.touched || fullNameRef.dirty)'>
+              <div id="red" [hidden] = '!fullNameRef.errors.required' class ='required'>
+                Put your glasses on and enter your full name
+              </div>
+              <div [hidden] = '!fullNameRef.errors.minlength'>
+                Minimum 4 alphabets requried
+              </div>
+              <div [hidden] = '!fullNameRef.errors.pattern' class ='required'>
+                No numbers & special symbols please
+              </div>
+            </div>
+          <label>Address <textarea #addressRef = "ngModel" required name="field2" ngModel></textarea></label>
+          <div *ngIf = 'addressRef.errors && (addressRef.valid || addressRef.touched || addressRef.dirty)'>
+            <div [hidden] = '!addressRef.errors.required' class ='required'>
+              Put your glasses on and enter your address
+            </div>
+
+          </div>
+      </div>
+      <div class="section"><span>2</span>Email &amp; Phone</div>
+      <div class="inner-wrap">
+          
+          <label>Email Address <input #emailRef = 'ngModel' type="email"  name="field3" required pattern = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" ngModel/></label>
+          <div *ngIf = 'emailRef.errors && (emailRef.valid || emailRef.touched || emailRef.dirty)'>  
+              <div [hidden] = '!emailRef.errors.required' class ='required'>
+              Put your glasses on and enter your email
+              </div>
+              <div [hidden] = '!emailRef.errors.pattern' class ='required'>
+              please enter a valid email
+            </div>
+            </div>
+          
+          <label>Phone Number <input #phonenumberRef = 'ngModel' type="text" maxlength="10" minlength="10" name="field4" required pattern= '^[789]\d{9}$' placeholder = "+91" ngModel /></label>
+              <div *ngIf = 'phonenumberRef.errors && (phonenumberRef.valid || phonenumberRef.touched || phonenumberRef.dirty)'>  
+                <div [hidden] = '!phonenumberRef.errors.required' class ='required'>
+                    Put your glasses on and enter your phone number
+                </div>
+                <div [hidden] = '!phonenumberRef.errors.pattern' class ='required'>
+                    please enter a valid phone number
+                  </div>
+            </div>
+      </div>
+  
+      <div class="section"><span>3</span>Passwords</div>
+          <div class="inner-wrap">
+          <label>Password <input #password = 'ngModel' requried   pattern ="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" type="password" name="field5" ngModel /></label>
+          
+          <label>Confirm Password <input #confirmpassword  ='ngModel' (input) ='validate()' type="password"  name="field6" ngModel /></label>
+          <!-- <div *ngIf='x'>
+              <p>password match</p>
+            </div>
+            <div *ngIf='y'>
+                <p>password not match</p>
+              </div> -->
+      </div>
+
+     
+  
+
+      <div class="button-section">
+       <input type="submit" name="Sign Up" [disabled] = registration.form.invalid />
+       <span class="privacy-policy">
+          <input #checkboxRef="ngModel" required type="checkbox" name="field7"ngModel/>You agree to our Terms and Policy. 
+          <div  *ngIf = 'checkboxRef.errors && (checkboxRef.valid || checkboxRef.touched || checkboxRef.dirty)'>
+              <div   = '!checkboxRef.errors.required' class ='required'[hidden]>
+                Please tick the checkbox
+              </div>
+            </span>
+      </div>
+  </form>
+  </div>
